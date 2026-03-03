@@ -1,68 +1,105 @@
-import React from 'react';
-import { SymbolView } from 'expo-symbols';
-import { Link, Tabs } from 'expo-router';
-import { Platform, Pressable } from 'react-native';
+import { Tabs } from 'expo-router';
+import { View, Text } from 'react-native';
+import { colors } from '@/lib/theme';
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+type TabIconProps = {
+  label: string;
+  focused: boolean;
+  color: string;
+};
+
+function TabIcon({ label, focused, color }: TabIconProps) {
+  const icons: Record<string, string> = {
+    Vandaag: '\u2665',
+    Ontdek: '\u2737',
+    Dagboek: '\u25A3',
+    Inzichten: '\u25A4',
+    Profiel: '\u25CF',
+  };
+
+  return (
+    <View className="items-center justify-center pt-1">
+      <Text
+        style={{
+          color,
+          fontSize: 20,
+          fontWeight: focused ? '700' : '400',
+        }}
+      >
+        {icons[label] ?? '\u25CB'}
+      </Text>
+    </View>
+  );
+}
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
-      }}>
+        headerShown: false,
+        tabBarActiveTintColor: colors.terracotta.DEFAULT,
+        tabBarInactiveTintColor: '#9CA3AF',
+        tabBarStyle: {
+          backgroundColor: '#FFFFFF',
+          height: 85,
+          borderTopWidth: 0.5,
+          borderTopColor: '#E5E7EB',
+          paddingTop: 8,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: -2 },
+          shadowOpacity: 0.04,
+          shadowRadius: 8,
+          elevation: 8,
+        },
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: '500',
+          marginTop: 2,
+        },
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="vandaag"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => (
-            <SymbolView
-              name={{
-                ios: 'chevron.left.forwardslash.chevron.right',
-                android: 'code',
-                web: 'code',
-              }}
-              tintColor={color}
-              size={28}
-            />
-          ),
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable style={{ marginRight: 15 }}>
-                {({ pressed }) => (
-                  <SymbolView
-                    name={{ ios: 'info.circle', android: 'info', web: 'info' }}
-                    size={25}
-                    tintColor={Colors[colorScheme].text}
-                    style={{ opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+          title: 'Vandaag',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon label="Vandaag" focused={focused} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="ontdek"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => (
-            <SymbolView
-              name={{
-                ios: 'chevron.left.forwardslash.chevron.right',
-                android: 'code',
-                web: 'code',
-              }}
-              tintColor={color}
-              size={28}
-            />
+          title: 'Ontdek',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon label="Ontdek" focused={focused} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="dagboek"
+        options={{
+          title: 'Dagboek',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon label="Dagboek" focused={focused} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="inzichten"
+        options={{
+          title: 'Inzichten',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon label="Inzichten" focused={focused} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profiel"
+        options={{
+          title: 'Profiel',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon label="Profiel" focused={focused} color={color} />
           ),
         }}
       />
