@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-terracotta: #C4704B;
+  --color-terracotta-light: #D4896A;
+  --color-terracotta-dark: #A85A38;
+  --color-salie: #7A9E7E;
+  --color-salie-light: #95B598;
+  --color-salie-dark: #5F8263;
+  --color-oceaan: #5B8FA8;
+  --color-oceaan-light: #7AAABE;
+  --color-oceaan-dark: #467A93;
+  --color-goud: #D4A843;
+  --color-goud-light: #E0BE6A;
+  --color-zand: #E8DDD3;
+  --color-zand-light: #F2EBE4;
+  --color-warmwit: #FBF9F6;
+  --color-nachtblauw: #1B2838;
+  --color-leisteen: #2A3444;
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--color-warmwit);
+  color: var(--color-nachtblauw);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+::selection {
+  background: #C4704B30;
+}
