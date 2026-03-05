@@ -175,13 +175,10 @@ export default function SettingsScreen() {
           text: 'Verwijderen',
           style: 'destructive',
           onPress: async () => {
-            const result = await auth.deleteAccount();
-            if (result.error) {
-              Alert.alert('Fout', 'Kon account niet verwijderen. Probeer het later opnieuw.');
-            } else {
-              await clearAllData();
-              router.replace('/');
-            }
+            // Try server-side delete, but always clear local data
+            await auth.deleteAccount();
+            await clearAllData();
+            router.replace('/');
           },
         },
       ],

@@ -13,10 +13,8 @@ import { useNotificationStore } from '@/lib/stores/notification-store';
  * Gebruik bij uitloggen of account verwijderen.
  */
 export async function clearAllData() {
-  // 1. Wis AsyncStorage (persistent storage)
-  await AsyncStorage.clear();
-
-  // 2. Reset alle Zustand stores in-memory
+  // 1. Reset alle Zustand stores in-memory EERST
+  //    (zodat persist middleware schone state terugschrijft, niet oude data)
   useOnboardingStore.setState({
     name: '',
     birthday: null,
@@ -74,4 +72,7 @@ export async function clearAllData() {
     partnerActivity: true,
     challengeReminder: true,
   });
+
+  // 2. Wis AsyncStorage volledig (vangt eventuele overgebleven keys)
+  await AsyncStorage.clear();
 }
