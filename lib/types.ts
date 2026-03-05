@@ -192,3 +192,27 @@ export type CoachMessage = {
   content: string;
   created_at: string;
 };
+
+// Momentje (private story for partner)
+export type Momentje = {
+  id: string;
+  image_uri: string | null;
+  text: string | null;
+  created_at: string;
+  expires_at: string;
+  saved_to_verhaal: boolean;
+  seen_by_partner: boolean;
+};
+
+// Timeline entry (union type for Ons Verhaal)
+export type TimelineEntry = {
+  id: string;
+  created_at: string;
+} & (
+  | { type: 'moment'; data: { photo_url: string; story: string; location?: string } }
+  | { type: 'milestone'; data: { title: string; date: string; milestone_type: Milestone['type']; photo_url?: string; note?: string } }
+  | { type: 'gratitude'; data: { text: string; category: GratitudeEntry['category'] } }
+  | { type: 'checkin'; data: { mood: 1 | 2 | 3 | 4 | 5; pulse: 1 | 2 | 3 | 4 | 5 } }
+  | { type: 'activity'; data: { title: string; activityType: string; summary?: string } }
+  | { type: 'reflection'; data: { text: string; mood_tag?: string } }
+);

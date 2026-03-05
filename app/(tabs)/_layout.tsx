@@ -1,36 +1,12 @@
 import { Tabs } from 'expo-router';
-import { View, Text } from 'react-native';
 import { colors } from '@/lib/theme';
-
-type TabIconProps = {
-  label: string;
-  focused: boolean;
-  color: string;
-};
-
-function TabIcon({ label, focused, color }: TabIconProps) {
-  const icons: Record<string, string> = {
-    Vandaag: '\u2665',
-    Ontdek: '\u2737',
-    Dagboek: '\u25A3',
-    Inzichten: '\u25A4',
-    Profiel: '\u25CF',
-  };
-
-  return (
-    <View className="items-center justify-center pt-1">
-      <Text
-        style={{
-          color,
-          fontSize: 20,
-          fontWeight: focused ? '700' : '400',
-        }}
-      >
-        {icons[label] ?? '\u25CB'}
-      </Text>
-    </View>
-  );
-}
+import {
+  TabVandaag,
+  TabOntdek,
+  TabVerhaal,
+  TabBespreek,
+  TabWij,
+} from '@/components/icons';
 
 export default function TabLayout() {
   return (
@@ -53,7 +29,7 @@ export default function TabLayout() {
         },
         tabBarLabelStyle: {
           fontSize: 11,
-          fontWeight: '500',
+          fontWeight: '600',
           marginTop: 2,
         },
       }}
@@ -62,8 +38,8 @@ export default function TabLayout() {
         name="vandaag"
         options={{
           title: 'Vandaag',
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon label="Vandaag" focused={focused} color={color} />
+          tabBarIcon: ({ color, size }) => (
+            <TabVandaag size={size ?? 22} color={color} strokeWidth={1.8} />
           ),
         }}
       />
@@ -71,35 +47,35 @@ export default function TabLayout() {
         name="ontdek"
         options={{
           title: 'Ontdek',
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon label="Ontdek" focused={focused} color={color} />
+          tabBarIcon: ({ color, size }) => (
+            <TabOntdek size={size ?? 22} color={color} strokeWidth={1.8} />
           ),
         }}
       />
       <Tabs.Screen
-        name="dagboek"
+        name="verhaal"
         options={{
-          title: 'Dagboek',
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon label="Dagboek" focused={focused} color={color} />
+          title: 'Ons Verhaal',
+          tabBarIcon: ({ color, size }) => (
+            <TabVerhaal size={size ?? 22} color={color} strokeWidth={1.8} />
           ),
         }}
       />
       <Tabs.Screen
-        name="inzichten"
+        name="praat"
         options={{
-          title: 'Inzichten',
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon label="Inzichten" focused={focused} color={color} />
+          title: 'Samen',
+          tabBarIcon: ({ color, size }) => (
+            <TabBespreek size={size ?? 22} color={color} strokeWidth={1.8} />
           ),
         }}
       />
       <Tabs.Screen
-        name="profiel"
+        name="wij"
         options={{
-          title: 'Profiel',
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon label="Profiel" focused={focused} color={color} />
+          title: 'Wij',
+          tabBarIcon: ({ color, size }) => (
+            <TabWij size={size ?? 22} color={color} strokeWidth={1.8} />
           ),
         }}
       />

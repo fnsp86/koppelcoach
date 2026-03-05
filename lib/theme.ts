@@ -77,3 +77,29 @@ export const fontSizes = {
   '2xl': 28,
   '3xl': 34,
 } as const;
+
+// Gradient presets for LinearGradient components
+export const gradients = {
+  header: [`${colors.terracotta.light}18`, `${colors.zand.light}40`, colors.warmwit] as [string, string, string],
+  headerSoft: [colors.zand.light, colors.warmwit] as [string, string],
+  warmCard: [`${colors.zand.light}60`, '#FFFFFF'] as [string, string],
+  salie: [`${colors.salie.light}20`, colors.warmwit] as [string, string],
+  oceaan: [`${colors.oceaan.light}15`, colors.warmwit] as [string, string],
+};
+
+// Warm shadow preset (terracotta-tinted instead of pure black)
+export const warmShadow = {
+  shadowColor: colors.terracotta.dark,
+  shadowOffset: { width: 0, height: 4 },
+  shadowOpacity: 0.08,
+  shadowRadius: 12,
+  elevation: 3,
+} as const;
+
+// Organic border radii for unique shapes
+export const organic = {
+  card: 20,
+  button: 16,
+  badge: 12,
+  avatar: 28,
+} as const;

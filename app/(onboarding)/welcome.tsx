@@ -1,174 +1,140 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import { Input } from '@/components/ui/Input';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { colors } from '@/lib/theme';
+import { colors, warmShadow } from '@/lib/theme';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Heart, Activity, TrendingUp, MessageCircle } from 'lucide-react-native';
+
+const FEATURES = [
+  { icon: Activity, color: colors.salie.DEFAULT, text: 'Dagelijkse check-ins' },
+  { icon: MessageCircle, color: colors.oceaan.DEFAULT, text: 'Samen groeien' },
+  { icon: TrendingUp, color: colors.goud.DEFAULT, text: 'Persoonlijke inzichten' },
+];
 
 export default function WelcomeScreen() {
-  const [mode, setMode] = useState<'choice' | 'invite' | 'join'>('choice');
-  const [inviteCode, setInviteCode] = useState('');
-  const [generatedCode] = useState('SAMEN-X7KP');
-
   return (
     <SafeAreaView className="flex-1" style={{ backgroundColor: colors.warmwit }}>
-      <View className="flex-1 px-8 pt-16">
-        {/* Header */}
-        <View className="mb-10 items-center">
-          <Text
-            className="text-4xl font-bold"
-            style={{ color: colors.terracotta.DEFAULT }}
-          >
-            Welkom bij Samen!
-          </Text>
-          <Text
-            className="mt-4 text-center text-base leading-6"
-            style={{ color: colors.leisteen }}
-          >
-            Samen helpt jullie om elke dag bewust met elkaar verbonden te
-            blijven. Nodig je partner uit of voer een uitnodigingscode in.
-          </Text>
-        </View>
+      <LinearGradient
+        colors={[colors.terracotta.DEFAULT + '08', colors.warmwit]}
+        style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 400 }}
+      />
 
-        {mode === 'choice' && (
-          <View className="gap-4">
-            {/* Invite partner option */}
-            <Card className="p-6">
-              <Text
-                className="mb-2 text-lg font-semibold"
-                style={{ color: colors.nachtblauw }}
-              >
-                Nodig je partner uit
-              </Text>
-              <Text
-                className="mb-4 text-sm leading-5"
-                style={{ color: '#6B7C8F' }}
-              >
-                Genereer een code die je partner kan invoeren om jullie koppel
-                te verbinden.
-              </Text>
-              <Button
-                title="Uitnodiging maken"
-                onPress={() => setMode('invite')}
-                fullWidth
+      <View className="flex-1 px-8">
+        <View className="flex-1 items-center justify-center">
+          {/* Decorative circles */}
+          <View style={{ marginBottom: 32, alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View
+                style={{
+                  width: 72,
+                  height: 72,
+                  borderRadius: 36,
+                  backgroundColor: colors.salie.DEFAULT + '15',
+                  marginRight: -12,
+                }}
               />
-            </Card>
-
-            {/* Join option */}
-            <Card className="p-6">
-              <Text
-                className="mb-2 text-lg font-semibold"
-                style={{ color: colors.nachtblauw }}
+              <View
+                style={{
+                  width: 88,
+                  height: 88,
+                  borderRadius: 44,
+                  backgroundColor: colors.terracotta.DEFAULT + '12',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  zIndex: 1,
+                }}
               >
-                Ik heb een code
-              </Text>
-              <Text
-                className="mb-4 text-sm leading-5"
-                style={{ color: '#6B7C8F' }}
-              >
-                Heb je een uitnodigingscode van je partner ontvangen? Voer
-                deze hieronder in.
-              </Text>
-              <Button
-                title="Code invoeren"
-                onPress={() => setMode('join')}
-                variant="secondary"
-                fullWidth
-              />
-            </Card>
-          </View>
-        )}
-
-        {mode === 'invite' && (
-          <View className="items-center">
-            <Card className="w-full p-8">
-              <Text
-                className="mb-2 text-center text-sm"
-                style={{ color: '#6B7C8F' }}
-              >
-                Deel deze code met je partner
-              </Text>
-              <Text
-                className="mb-6 text-center text-3xl font-bold tracking-widest"
-                style={{ color: colors.terracotta.DEFAULT }}
-              >
-                {generatedCode}
-              </Text>
-              <Text
-                className="text-center text-xs leading-4"
-                style={{ color: '#9CA3AF' }}
-              >
-                De code is 24 uur geldig. Je partner kan de code invoeren bij
-                het aanmaken van een account.
-              </Text>
-            </Card>
-
-            <TouchableOpacity
-              className="mt-6 py-2"
-              onPress={() => setMode('choice')}
-            >
-              <Text
-                className="text-base font-medium"
-                style={{ color: colors.terracotta.DEFAULT }}
-              >
-                ← Terug
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )}
-
-        {mode === 'join' && (
-          <View>
-            <Card className="p-6">
-              <Text
-                className="mb-4 text-lg font-semibold"
-                style={{ color: colors.nachtblauw }}
-              >
-                Uitnodigingscode invoeren
-              </Text>
-              <Input
-                placeholder="SAMEN-XXXX"
-                value={inviteCode}
-                onChangeText={setInviteCode}
-                autoCapitalize="characters"
-              />
-              <View className="mt-4">
-                <Button
-                  title="Koppel verbinden"
-                  onPress={() => {
-                    // TODO: connect to couple store
-                  }}
-                  fullWidth
-                />
+                <Heart size={36} color={colors.terracotta.DEFAULT} fill={colors.terracotta.DEFAULT} strokeWidth={0} />
               </View>
-            </Card>
-
-            <View className="mt-4 items-center">
-              <TouchableOpacity
-                className="py-2"
-                onPress={() => setMode('choice')}
-              >
-                <Text
-                  className="text-base font-medium"
-                  style={{ color: colors.terracotta.DEFAULT }}
-                >
-                  ← Terug
-                </Text>
-              </TouchableOpacity>
+              <View
+                style={{
+                  width: 72,
+                  height: 72,
+                  borderRadius: 36,
+                  backgroundColor: colors.oceaan.DEFAULT + '15',
+                  marginLeft: -12,
+                }}
+              />
             </View>
           </View>
-        )}
 
-        {/* Skip option */}
-        <View className="mt-auto mb-8 items-center">
-          <TouchableOpacity
-            className="py-3"
-            onPress={() => router.replace('/(tabs)/vandaag')}
+          <Text
+            className="text-4xl font-bold text-center"
+            style={{ color: colors.nachtblauw }}
           >
-            <Text className="text-sm" style={{ color: '#9CA3AF' }}>
-              Overslaan en solo verkennen
+            Welkom bij Samen
+          </Text>
+          <Text
+            className="mt-3 text-center text-base leading-6"
+            style={{ color: '#6B7C8F' }}
+          >
+            Versterk jullie relatie met dagelijkse activiteiten, check-ins en inzichten
+          </Text>
+
+          {/* Feature points */}
+          <View style={{ marginTop: 40, gap: 16, width: '100%' }}>
+            {FEATURES.map((f) => {
+              const Icon = f.icon;
+              return (
+                <View
+                  key={f.text}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    backgroundColor: '#FFFFFF',
+                    borderRadius: 16,
+                    padding: 16,
+                    ...warmShadow,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: 44,
+                      height: 44,
+                      borderRadius: 12,
+                      backgroundColor: f.color + '12',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginRight: 14,
+                    }}
+                  >
+                    <Icon size={20} color={f.color} strokeWidth={1.8} />
+                  </View>
+                  <Text className="text-base font-semibold" style={{ color: colors.nachtblauw }}>
+                    {f.text}
+                  </Text>
+                </View>
+              );
+            })}
+          </View>
+        </View>
+
+        {/* Buttons */}
+        <View style={{ marginBottom: 40, gap: 12 }}>
+          <TouchableOpacity
+            onPress={() => router.push('/(onboarding)/name')}
+            activeOpacity={0.8}
+            style={{
+              backgroundColor: colors.terracotta.DEFAULT,
+              borderRadius: 16,
+              paddingVertical: 18,
+              alignItems: 'center',
+            }}
+          >
+            <Text className="text-base font-bold text-white">Laten we beginnen</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => router.push('/(auth)/login')}
+            activeOpacity={0.7}
+            style={{
+              paddingVertical: 14,
+              alignItems: 'center',
+            }}
+          >
+            <Text className="text-sm font-medium" style={{ color: '#6B7C8F' }}>
+              Ik heb al een account
             </Text>
           </TouchableOpacity>
         </View>
