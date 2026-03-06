@@ -52,7 +52,8 @@ export const metadata: Metadata = {
     canonical: "https://samenapp.nl",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/icon.svg",
+    apple: "/apple-icon",
   },
 };
 
