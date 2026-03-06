@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Algemene Voorwaarden",
   description: "Algemene voorwaarden van de Samen app.",
+  alternates: { canonical: "/voorwaarden" },
 };
 
 export default function VoorwaardenPage() {

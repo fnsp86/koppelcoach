@@ -7,6 +7,7 @@ import { Heart, Menu, X, Smartphone } from "lucide-react";
 const NAV_LINKS = [
   { href: "/#features", label: "Features" },
   { href: "/#hoe-werkt-het", label: "Hoe werkt het" },
+  { href: "/blog", label: "Blog" },
   { href: "/faq", label: "FAQ" },
 ];
 

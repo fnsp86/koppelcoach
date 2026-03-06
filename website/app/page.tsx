@@ -608,6 +608,50 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ═══ BLOG PREVIEW ═══ */}
+      <section className="bg-zand-light/40 border-t border-zand">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-nachtblauw mb-3">
+              Tips voor jullie relatie
+            </h2>
+            <p className="text-base text-leisteen max-w-lg mx-auto">
+              Praktische artikelen over communicatie, quality time en meer.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {[
+              { slug: "relatie-verbeteren", title: "Relatie verbeteren: 10 tips die echt werken" },
+              { slug: "communicatie-in-relatie", title: "Beter communiceren met je partner" },
+              { slug: "date-ideeen", title: "50 leuke date-ideeen voor koppels" },
+            ].map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group rounded-2xl border border-zand bg-warmwit p-5 transition-all hover:shadow-lg hover:-translate-y-0.5"
+              >
+                <h3 className="text-sm font-bold text-nachtblauw mb-2 group-hover:text-terracotta transition-colors">
+                  {post.title}
+                </h3>
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-terracotta group-hover:gap-2 transition-all">
+                  Lees meer <ArrowRight className="h-3 w-3" />
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-6 text-center">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-1 text-sm font-bold text-terracotta hover:gap-2 transition-all"
+            >
+              Alle artikelen <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ VADERCOACH CROSS-PROMO ═══ */}
       <section className="border-t border-zand">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">

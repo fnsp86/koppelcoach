@@ -4,6 +4,7 @@ import { ChevronDown } from "lucide-react";
 export const metadata: Metadata = {
   title: "Veelgestelde vragen",
   description: "Antwoorden op veelgestelde vragen over de Samen app voor koppels.",
+  alternates: { canonical: "/faq" },
 };
 
 const FAQS = [

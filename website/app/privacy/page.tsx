@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacybeleid",
   description: "Privacybeleid van de Samen app. Lees hoe wij omgaan met jullie gegevens.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

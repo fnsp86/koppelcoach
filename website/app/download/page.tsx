@@ -3,7 +3,8 @@ import { Heart, CheckCircle, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Download",
-  description: "De Samen app komt binnenkort beschikbaar voor iPhone en Android.",
+  description: "Download de Samen app gratis voor iPhone en Android. Dagelijkse check-ins, quizzen en gespreksstarters voor koppels.",
+  alternates: { canonical: "/download" },
 };
 
 export default function DownloadPage() {

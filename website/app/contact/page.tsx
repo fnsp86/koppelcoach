@@ -4,6 +4,7 @@ import { Mail, MessageCircle } from "lucide-react";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Neem contact op met het Samen app team. We helpen je graag.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

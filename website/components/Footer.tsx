@@ -7,6 +7,12 @@ const FOOTER_LINKS = {
     { href: "/#features", label: "Features" },
     { href: "/#hoe-werkt-het", label: "Hoe werkt het" },
   ],
+  Leren: [
+    { href: "/blog", label: "Blog" },
+    { href: "/blog/relatie-verbeteren", label: "Relatie verbeteren" },
+    { href: "/blog/communicatie-in-relatie", label: "Communicatie tips" },
+    { href: "/blog/date-ideeen", label: "Date-ideeen" },
+  ],
   Support: [
     { href: "/faq", label: "Veelgestelde vragen" },
     { href: "/contact", label: "Contact" },
@@ -21,7 +27,7 @@ export default function Footer() {
   return (
     <footer className="bg-nachtblauw">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-5">
           {/* Brand */}
           <div className="col-span-2 sm:col-span-1">
             <div className="flex items-center gap-2 mb-4">
